@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :questions
 
   validates :email, presence: true, email: true
-  validates :username, presence: true
+  validates :username, presence: true, length: { maximum: 40 }
   validate :check_username, on: :create
   validates :email, :username, uniqueness: true
 
@@ -23,7 +23,7 @@ class User < ApplicationRecord
     username.downcase!
     errors.add(
       :username, "may only contain any latin letters, numbers and '_'"
-    ) unless username =~ /^[a-zA-Z\d_]{1,40}$/
+    ) unless username =~ /^[a-zA-Z\d_]*$/
   end
 
   def encrypt_password
