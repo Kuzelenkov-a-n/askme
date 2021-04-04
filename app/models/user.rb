@@ -10,21 +10,13 @@ class User < ApplicationRecord
   has_many :questions
 
   validates :email, presence: true, email: true
-  validates :username, presence: true, length: { maximum: 40 }
-  validate :check_username, on: :create
+  validates :username, presence: true, format: { with: /\A[a-zA-Z\d_]{1,40}\z/ }
   validates :email, :username, uniqueness: true
+  validates :password, presence: true, on: :create
+  validates :password, confirmation: true, on: :create
 
-  validates_presence_of :password, on: :create
-  validates_confirmation_of :password
-
+  before_validation :username_downcase
   before_save :encrypt_password
-
-  def check_username
-    username.downcase!
-    errors.add(
-      :username, "may only contain any latin letters, numbers and '_'"
-    ) unless username =~ /^[a-zA-Z\d_]*$/
-  end
 
   def encrypt_password
     if self.password.present?
@@ -44,13 +36,23 @@ class User < ApplicationRecord
 
   def self.authenticate(email, password)
     user = find_by(email: email)
+
     return nil unless user.present?
+
     hashed_password = User.hash_to_string(
       OpenSSL::PKCS5.pbkdf2_hmac(
         password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST
       )
     )
+
     return user if user.password_hash == hashed_password
+
     nil
+  end
+
+  private
+
+  def username_downcase
+    username.downcase!
   end
 end
