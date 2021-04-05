@@ -1,16 +1,16 @@
 require 'openssl'
-require 'valid_email'
 
 class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
+  USERNAME_REGEXP = /\A\w{4,40}\z/
 
   attr_accessor :password
 
   has_many :questions
 
-  validates :email, presence: true, email: true
-  validates :username, presence: true, format: { with: /\A[a-zA-Z\d_]{1,40}\z/ }
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :username, presence: true, format: { with: USERNAME_REGEXP }
   validates :email, :username, uniqueness: true
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, on: :create
@@ -53,6 +53,6 @@ class User < ApplicationRecord
   private
 
   def username_downcase
-    username.downcase!
+    username.downcase! unless username.nil?
   end
 end
