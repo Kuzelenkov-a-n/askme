@@ -4,7 +4,7 @@
   </h1>
 
   <div class="user-image-div">
-    <%= image_tag user_avatar(@user), alt: '[Фото]' %>
+    <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
   </div>
 
   <h2 class="title-small buffer-both">
@@ -31,6 +31,14 @@
           <%= submit_tag "Задать вопрос", class: 'button button-small button-dark' %>
         </div>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="column-3-4">
+  <div class="user-questions buffer-both">
+    <div class="questions-list">
+      <%= render partial: 'questions/questions_amount', object: @questions %>
     </div>
   </div>
 </div>

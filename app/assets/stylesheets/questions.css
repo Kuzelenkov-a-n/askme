@@ -15,11 +15,13 @@
 }
 
 .question-text,
+.question-count,
 .question-answer {
   margin-bottom: 10px;
 }
 
-.question-text {
+.question-text,
+.question-count {
   color: #005a55;
 }
 
