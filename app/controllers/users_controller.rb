@@ -1,40 +1,50 @@
 class UsersController < ApplicationController
+
+  before_action :load_user, except: [:index, :new, :create]
+
   def index
-    @users = [
-      User.new(
-        id: 1,
-        name: 'Andrew',
-        username: '_andrew_',
-        avatar_url: 'https://goodprogrammer.ru/system/avatars/000/016/211/aa680b6a02af38e87e25667db84ccbd62375de40_x300.jpg?1607677928'
-      ),
-      User.new(
-        id: 2,
-        name: 'Anton',
-        username: '_tcg_'
-      )
-    ]
+    @users = User.all
   end
 
   def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to root_url, notice: 'Пользователь успешно зарегистрирован!'
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: 'Данные обновлены!'
+    else
+      render 'edit'
+    end
   end
 
   def edit
   end
 
   def show
-    @user = User.new(
-      name: 'Andrew',
-      username: '_andrew_',
-      avatar_url: 'https://goodprogrammer.ru/system/avatars/000/016/211/aa680b6a02af38e87e25667db84ccbd62375de40_x300.jpg?1607677928'
-    )
+    @questions = @user.questions.order(created_at: :desc)
 
-    @questions = [
-      Question.new(text: 'Как дела?', created_at: Date.parse('05.04.2021')),
-      Question.new(text: 'Как настроение?', created_at: Date.parse('05.04.2021')),
-      Question.new(text: 'Существует параллельная вселенная?', created_at: Date.parse('06.04.2021')),
-      Question.new(text: 'Что было первым яйцо или курица?', created_at: Date.parse('06.04.2021'))
-    ]
+    @new_question = @user.questions.build
+  end
 
-    @new_question = Question.new
+  private
+
+  def load_user
+    @user ||= User.find params[:id]
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation,
+                                 :name, :username, :avatar_url)
   end
 end
