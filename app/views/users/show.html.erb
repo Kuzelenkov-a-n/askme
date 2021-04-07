@@ -38,7 +38,13 @@
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="questions-list">
-      <%= render partial: 'questions/questions_amount', object: @questions %>
+      <div class="question">
+        <div class="question-content">
+          <div class="question-count text-lead">
+            <p>У пользователя <%= correct_of_declination(@questions.count) %></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
