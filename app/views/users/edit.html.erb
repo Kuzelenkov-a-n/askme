@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-field">
-          Если не хотите менять пароль - оставьте эти поля пустыми!
+        Если не хотите менять пароль - оставьте эти поля пустыми!
       </div>
 
       <div class="form-field">
@@ -43,7 +43,11 @@
       </div>
 
       <div class="form-action">
-        <%= f.submit 'Сохранить', class: 'button button-small button-dark' %>
+        <%= f.submit 'Сохранить', class: 'button button-small button-dark button-left' %>
+      </div>
+      <div class="form-action">
+        <%= link_to 'Удалить аккаунт', user_path(@user), class: 'button button-small button-delete button-right',
+                    method: :delete, data: { confirm: 'Вы уверены, что хотите удалить свой аккаунт?' } %>
       </div>
     <% end %>
   </div>

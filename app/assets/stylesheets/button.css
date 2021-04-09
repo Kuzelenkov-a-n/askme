@@ -7,10 +7,30 @@
   text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
   font-weight: bold;
   border: none;
+  cursor: pointer;
+}
+
+.button-delete {
+  border: 1px solid lightgrey;
+  background: white;
+  color: gray;
+  font-weight: bold;
+}
+
+.button-delete:hover {
+  border: 1px solid black;
+  background: red;
+  color: black;
+  font-weight: bold;
 }
 
 .button-dark {
   background: #2e2f41;
+  color: #fff;
+}
+
+.button-dark:hover {
+  background: #005a55;
   color: #fff;
 }
 
@@ -28,4 +48,12 @@
   font-size: 15px;
   line-height: 15px;
   padding: 7px 15px;
+}
+
+.button-left {
+  float: left;
+}
+
+.button-right {
+  float: right;
 }
