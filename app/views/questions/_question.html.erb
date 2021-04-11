@@ -2,6 +2,8 @@
   <div class="question-content">
     <div class="question-text text-lead">
       <%= question.text %>
+      <p></p>
+      <%= link_to question.user.username %>
     </div>
 
     <% if question.answer.present? %>

@@ -42,6 +42,11 @@
         <%= f.password_field :password_confirmation, class: 'form-text-field' %>
       </div>
 
+      <div class="form-field">
+        <%= f.label :color, class: 'form-label' %>
+        <%= f.color_field :color, value: @user.color %>
+      </div>
+
       <div class="form-action">
         <%= f.submit 'Сохранить', class: 'button button-small button-dark button-left' %>
       </div>
