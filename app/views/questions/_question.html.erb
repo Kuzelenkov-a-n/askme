@@ -3,7 +3,7 @@
     <div class="question-text text-lead">
       <%= question.text %>
       <p></p>
-      <%= link_to question.user.username %>
+      <%= link_to "@#{question.author.username}", user_path(question.author) %>
     </div>
 
     <% if question.answer.present? %>
