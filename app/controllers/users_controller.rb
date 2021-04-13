@@ -7,14 +7,15 @@ class UsersController < ApplicationController
   end
 
   def new
-    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
+    redirect_to root_path, alert: 'Вы уже залогинены' if current_user.present?
     @user = User.new
   end
 
   def create
-    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
+    redirect_to root_path, alert: 'Вы уже залогинены' if current_user.present?
 
     @user = User.new(user_params)
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user), notice: 'Пользователь успешно зарегистрирован!'
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
     @user.questions.destroy_all
     @user.destroy
 
-    redirect_to root_url, notice: 'Аккаунт удален!'
+    redirect_to root_path, notice: 'Аккаунт удален!'
   end
 
   private
