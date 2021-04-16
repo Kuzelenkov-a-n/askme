@@ -47,14 +47,15 @@
         <%= f.color_field :color %>
       </div>
 
-      <div class="form-action buffer-both">
-        <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
-      </div>
-
       <div class="form-action">
         <%= link_to 'Удалить аккаунт', user_path(@user), class: 'button button-small button-delete button-right',
                     method: :delete, data: { confirm: 'Вы уверены, что хотите удалить свой аккаунт?' } %>
       </div>
+
+      <div class="form-action">
+        <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
+      </div>
+
     <% end %>
   </div>
 </div>
