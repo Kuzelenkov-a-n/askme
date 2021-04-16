@@ -17,6 +17,8 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, on: :create
 
+  scope :sort_created_at, -> { order(created_at: :asc)}
+
   before_validation :attr_downcase
   before_save :encrypt_password
 
