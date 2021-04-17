@@ -9,3 +9,6 @@ ru:
         password_confirmation: Подтвердите пароль
         color: Выберете цвет вашего профиля
         email: Логин (email)
+      question:
+        answer: Ответ
+        text: Вопрос
