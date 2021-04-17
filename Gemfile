@@ -11,6 +11,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'uglifier'
+gem 'rails-i18n'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
