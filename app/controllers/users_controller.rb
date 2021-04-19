@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authorize_user, except: [:index, :new, :create, :show]
 
   def index
-    @users = User.all.sort_created_at
+    @users = User.sort_by_id
   end
 
   def new
