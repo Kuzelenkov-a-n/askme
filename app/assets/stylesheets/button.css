@@ -50,6 +50,14 @@
   padding: 7px 15px;
 }
 
+.button-hashtag {
+  font-size: 15px;
+  line-height: 15px;
+  padding: 7px 15px;
+  border: 3px solid #00b6ad;
+  border-radius: 20px;
+}
+
 .button-left {
   float: left;
 }

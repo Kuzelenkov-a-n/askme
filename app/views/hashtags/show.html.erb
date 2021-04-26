@@ -1,0 +1,16 @@
+<div class="content-wrapper buffer-both text-center">
+  <div class="buffer-both">
+    <h1 class="title-medium">Вопросы с хэштегом <%= @hashtag.text %></h1>
+  </div>
+  <% @hashtag.questions.each do |question| %>
+    <div class="question-text text-lead">
+      <%= question.text %>
+      <p></p>
+      <%= link_to "@#{question.user.username}", user_path(question.user), class: 'button button-small button-dark' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="container text-center">
+  <%= link_to 'На главную', root_path, class: 'button button-light' %>
+</div>

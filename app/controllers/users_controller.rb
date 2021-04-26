@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.sort_created_at
+    @hashtags = Hashtag.all
   end
 
   def new
