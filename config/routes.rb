@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :questions, except: [:new], shallow: true do
+  resources :questions, except: [:show, :new, :index], shallow: true do
     resources :hashtags, only: [:show]
   end
 
