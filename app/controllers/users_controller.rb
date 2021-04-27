@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.sort_created_at
-    @hashtags = Hashtag.all
+    @hashtags = Hashtag.left_outer_joins(:questions).where.not(questions: {text: 'does not exist'})
   end
 
   def new
