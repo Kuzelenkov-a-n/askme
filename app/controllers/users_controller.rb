@@ -4,22 +4,22 @@ class UsersController < ApplicationController
 
   def index
     @users = User.sort_created_at
-    @hashtags = Hashtag.left_outer_joins(:questions).where.not(questions: {text: 'does not exist'})
+    @hashtags = Hashtag.with_questions
   end
 
   def new
-    redirect_to root_path, alert: 'Вы уже залогинены' if current_user.present?
+    redirect_to root_path, alert: I18n.t('controllers.users.logged_in') if current_user.present?
     @user = User.new
   end
 
   def create
-    redirect_to root_path, alert: 'Вы уже залогинены' if current_user.present?
+    redirect_to root_path, alert: I18n.t('controllers.users.logged_in') if current_user.present?
 
     @user = User.new(user_params)
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: 'Пользователь успешно зарегистрирован!'
+      redirect_to user_path(@user), notice: I18n.t('controllers.users.registered')
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: 'Данные обновлены!'
+      redirect_to user_path(@user),  notice: I18n.t('controllers.users.updated')
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: 'Аккаунт удален!'
+    redirect_to root_path, notice: I18n.t('controllers.users.destroyed')
   end
 
   private

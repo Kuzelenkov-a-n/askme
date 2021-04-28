@@ -8,6 +8,8 @@ class Hashtag < ApplicationRecord
 
   before_validation :hashtag_downcase
 
+  scope :with_questions, -> { left_outer_joins(:questions).where.not(questions: {text: 'does not exist'}) }
+
   private
 
   def hashtag_downcase

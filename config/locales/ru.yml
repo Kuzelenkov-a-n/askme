@@ -2,13 +2,47 @@ ru:
   activerecord:
     attributes:
       user:
-        name: Имя
-        username: Никнейм
-        avatar_url: URL вашей аватарки
-        password: Пароль
-        password_confirmation: Подтвердите пароль
-        color: Выберете цвет вашего профиля
-        email: Логин (email)
+        name: "Имя"
+        username: "Никнейм"
+        avatar_url: "URL вашей аватарки"
+        password: "Пароль"
+        password_confirmation: "Подтвердите пароль"
+        color: "Выберете цвет вашего профиля"
+        email: "Логин (email)"
       question:
-        answer: Ответ
-        text: Вопрос
+        answer: "Ответ"
+        text: "Вопрос"
+  controllers:
+    users:
+      updated: "Данные обновлены!"
+      destroyed: "Аккаунт удалён, ждём Вас снова!"
+      logged_in: "Вы уже залогинены!"
+      registered: "Пользователь успешно зарегистрирован!"
+    sessions:
+      logged_in: "Вы успешно залогинились!"
+      logged_out: "Вы разлогинились!"
+    questions:
+      asked: "Вопрос задан!"
+      saved: "Вопрос сохранён!"
+      destroyed: "Вопрос удалён!"
+    applications:
+      alert: "Вам сюда нельзя!"
+
+  errors:
+    messages:
+      not_saved:
+        one: "В вашей форме 1 ошибка:"
+        few: "В вашей форме %{count} ошибки"
+        many: "В вашей форме %{count} ошибок"
+        other: "В вашей форме %{count} ошибок"
+  questions:
+    question_form:
+      one: "вопрос"
+      few: "вопроса"
+      many: "вопросов"
+      other: "вопросов"
+    answer_form:
+      one: "ответ"
+      few: "ответа"
+      many: "ответов"
+      other: "ответов"

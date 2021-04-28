@@ -1,0 +1,16 @@
+<% errors = model.errors %>
+
+<% if errors.any? %>
+  <div class="form-errors">
+    <div class="lead buffer-both">
+      <%= I18n.t('errors.messages.not_saved',
+                 count: errors.count)
+      %>
+    </div>
+    <ul>
+      <% errors.full_messages.each do |message| %>
+        <li class="form-error-message"><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

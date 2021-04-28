@@ -7,7 +7,7 @@ class Question < ApplicationRecord
 
   validates :text, presence: true, length: { maximum: 255 }
   after_save :find_or_create_hashtags, if: -> {
-    Question.exists?(text: self.text) || Question.exists?(answer: self.answer)
+    Question.exists?(text: text) || Question.exists?(answer: answer)
   }
 
   private

@@ -3,15 +3,7 @@
 
   <div class="column-1-2">
     <%= form_for @user do |f| %>
-      <% if @user.errors.any? %>
-        <div class="form-errors">
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-              <li class="form-error-message"><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render partial: 'partials/form_errors', locals: { model: @user } %>
 
       <div class="form-field">
         <%= f.label :username, class: 'form-label' %>
