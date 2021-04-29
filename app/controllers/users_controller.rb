@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.sort_created_at
-    @hashtags = Hashtag.with_questions
+    @hashtags = Hashtag.with_questions.distinct
   end
 
   def new

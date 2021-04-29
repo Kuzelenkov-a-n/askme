@@ -6,15 +6,12 @@ class Question < ApplicationRecord
   has_many :hashtags, through: :question_hashtags
 
   validates :text, presence: true, length: { maximum: 255 }
-  after_save :find_or_create_hashtags, if: -> {
-    Question.exists?(text: text) || Question.exists?(answer: answer)
-  }
+  after_commit :find_or_create_hashtags, on: [:create, :update]
 
   private
 
   def hashtags_searcher
-    answer_hashtags = answer&.scan(Hashtag::HASHTAG_REGEXP) || []
-    text.scan(Hashtag::HASHTAG_REGEXP).union(answer_hashtags)
+    "#{answer} #{text}".scan(Hashtag::HASHTAG_REGEXP)
   end
 
   def find_or_create_hashtags
