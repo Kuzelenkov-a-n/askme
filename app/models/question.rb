@@ -6,15 +6,14 @@ class Question < ApplicationRecord
   has_many :hashtags, through: :question_hashtags
 
   validates :text, presence: true, length: { maximum: 255 }
-  after_commit :find_or_create_hashtags, on: [:create, :update]
+  after_save_commit :find_or_create_hashtags
 
   private
 
-  def hashtags_searcher
-    "#{answer} #{text}".scan(Hashtag::HASHTAG_REGEXP)
-  end
-
   def find_or_create_hashtags
-    self.hashtags = hashtags_searcher&.map { |hash| Hashtag.find_or_create_by(text: hash) }
+    self.hashtags =
+      "#{answer} #{text}".downcase
+        .scan(Hashtag::HASHTAG_REGEXP).uniq
+        .map { |hash| Hashtag.find_or_create_by(text: hash) }
   end
 end

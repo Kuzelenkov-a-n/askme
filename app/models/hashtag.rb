@@ -6,13 +6,5 @@ class Hashtag < ApplicationRecord
 
   validates :text, presence: true, uniqueness: true, format: { with: HASHTAG_REGEXP }, length: { maximum: 255 }
 
-  before_validation :hashtag_downcase
-
   scope :with_questions, -> { left_outer_joins(:questions).where.not(questions: {id: nil}) }
-
-  private
-
-  def hashtag_downcase
-    text&.downcase!
-  end
 end
