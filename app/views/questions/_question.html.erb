@@ -21,7 +21,7 @@
     </div>
     <p></p>
     <% question.hashtags.each do |hash| %>
-      <%= link_to "(#{hash.text})", hashtag_path(hash) %>
+      <%= link_to "(##{hash.text})", hashtag_path(hash) %>
     <% end %>
   </div>
   <% if question.user == current_user %>

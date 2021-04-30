@@ -14,6 +14,6 @@ class Question < ApplicationRecord
     self.hashtags =
       "#{answer} #{text}".downcase
         .scan(Hashtag::HASHTAG_REGEXP).uniq
-        .map { |hash| Hashtag.find_or_create_by(text: hash) }
+        .map { |hash| Hashtag.find_or_create_by(text: hash.delete('#')) }
   end
 end
