@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'recaptcha'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
