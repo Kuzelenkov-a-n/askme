@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  user: <%= Rails.application.credentials.dig(:production, :user) %>
+  database: <%= Rails.application.credentials.dig(:production, :database) %>
+  password: <%= Rails.application.credentials.dig(:production, :password) %>
