@@ -1,24 +1,98 @@
-# README
+## Приложение "ASKME" (RoR)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<a href="https://askmeappkan.herokuapp.com/">askmeapp</a> (Heroku)
 
-Things you may want to cover:
+<img src="https://user-images.githubusercontent.com/77342692/126548605-f0aa17fc-99ab-4f8a-8363-54895df5f182.png" alt="screenshot"/>
 
-* Ruby version
+Приложение для общения. Задавайте вопросы пользователям, пишите хэштеги и наслаждайтесь общением!
 
-* System dependencies
+### Основные функции приложения:
 
-* Configuration
+1. Регистрация пользователя
 
-* Database creation
+2. Общение с зарегистрированными пользователями (в т.ч. анонимно)
 
-* Database initialization
+3. Добавление хэштегов и поиск по ним
 
-* How to run the test suite
+4. Добавление URL фотографий зарегистрированными пользователями
 
-* Services (job queues, cache servers, search engines, etc.)
+5. Возможность изменять цвет фона профиля
 
-* Deployment instructions
+___
+## Основные библиотеки и технологии:
 
-* ...
+### Backend:
+
+1. ```Ruby 2.7.2``` + ```Rails 6.1.3.1```
+
+2. Базы данных:
+    - ```postgresql```(production)
+    - ```sqlite3``` (development)
+
+### Frontend:
+
+1. Свои *stylesheets* без использования CSS-фреймворков
+
+2. Сборщик:
+    - ```webpacker 5.2.1```
+
+3. Защита форм (Google reCAPTCHA):
+    - ```recaptcha```
+
+4. Интернационализация:
+    - ```I18n```
+___
+## Для запуска программы:
+
+1. Скачайте все файлы из репозитория или склонируйте его
+2. Предустановите ```ruby 2.7.2```, ```bundler```, ```node```, ```yarn```
+3. Установите необходимые зависимости:
+```
+$ bundle install
+
+$ yarn install
+```
+4. Обновите и пропишите ```credentials``` с необходимыми переменными окружения:
+```
+$ EDITOR=vi rails credentials:edit --environment 'окружение'
+```
+
+**Список переменных окружения:**
+
+*Recaptcha:*
+
+```
+recaptcha:
+  recaptcha_askme_site_key: 'Ваш публичный ключ'
+  recaptcha_askme_secret_key: 'Ваш секретный ключ'
+```
+
+*Для настройки БД (production):*
+
+```
+production:
+  user: 'Пользователь'
+  password: 'Пароль'
+  database: 'Наименование БД'
+```
+
+5. Прогоните миграции БД:
+
+```
+$ bundle exec rails db:migrate
+```
+
+6. Запуск в **development** окружении:
+
+- В первом окне терминала запустите webpack сервер:
+```
+$ bundle exec bin/webpack-dev-server
+```
+- Во втором окне терминала запустите rails сервер:
+```
+$ bundle exec rails s
+```
+приложение будет доступно по адресу: http://localhost:3000/
+
+___
+*Автор приложения: Кузеленков Андрей (в рамках прохождения интенсива "Хороший программист")*
