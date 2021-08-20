@@ -59,6 +59,5 @@ class User < ApplicationRecord
   def attr_downcase
     username&.downcase!
     email&.downcase!
-
   end
 end
